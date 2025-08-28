@@ -4,7 +4,7 @@ use axum::{
 };
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
 
-use crate::routes::version::handler;
+use crate::routes::{health::handler as health_handler, version::handler as version_handler};
 
 mod routes;
 
@@ -18,7 +18,9 @@ async fn main() {
         .with(tracing_subscriber::fmt::layer())
         .init();
 
-    let app = Router::new().route("/v1/version/{mod_name}/{bs_version}", get(handler));
+    let app = Router::new()
+        .route("/v1/version/{mod_name}/{bs_version}", get(version_handler))
+        .route("/health", get(health_handler));
 
     // run it
     let listener = tokio::net::TcpListener::bind("127.0.0.1:9669")
