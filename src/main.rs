@@ -23,7 +23,7 @@ async fn main() {
         .route("/health", get(health_handler));
 
     // run it
-    let listener = tokio::net::TcpListener::bind("127.0.0.1:9669")
+    let listener = tokio::net::TcpListener::bind("0.0.0.0:5000")
         .await
         .unwrap();
     tracing::debug!("listening on {}", listener.local_addr().unwrap());
