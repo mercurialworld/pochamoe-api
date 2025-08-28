@@ -1,0 +1,14 @@
+[package]
+name = "pocha-api"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow = "1.0.99"
+axum = { version = "0.8.4", features = ["macros"] }
+regex = "1.11.2"
+serde = { version = "1.0.219", features = ["derive"] }
+tokio = { version = "1.47.1", features = ["macros", "rt-multi-thread"] }
+tracing = "0.1.41"
+tracing-subscriber = { version = "0.3.19", features = ["env-filter"] }
+validator = { version = "0.20.0", features = ["derive"] }
