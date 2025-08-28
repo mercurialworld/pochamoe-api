@@ -20,7 +20,7 @@ async fn main() {
 
     let app = Router::new()
         .route("/v1/version/{mod_name}/{bs_version}", get(version_handler))
-        .route("/health", get(health_handler));
+        .route("/v1/health", get(health_handler));
 
     // run it
     let listener = tokio::net::TcpListener::bind("0.0.0.0:5000")
