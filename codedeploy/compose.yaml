@@ -2,6 +2,3 @@ services:
   pocha-api:
     ports:
       - 6002:5000
-    secrets:
-      - source: env
-        target: /app/.env
