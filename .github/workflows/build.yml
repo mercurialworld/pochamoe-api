@@ -3,7 +3,18 @@ name: Build
 on:
   push:
     branches: "main"
-  workflow_dispatch:
+  workflow_call:
+    inputs:
+      upload-artifacts:
+        description: Whether to upload artifacts.
+        required: false
+        default: true
+        type: boolean
+    outputs:
+      key: 
+        description: The Docker image tag.
+        value: ${{ jobs.build-docker-image.outputs.tag }}
+
 
 env:
   CONTAINER_REGISTRY: ghcr.io
@@ -46,6 +57,7 @@ jobs:
 
       - name: Upload image artifact
         uses: actions/upload-artifact@v4
+        if: inputs.upload-artifacts
         with:
           name: docker-image
           path: /tmp/image.tar
@@ -76,6 +88,7 @@ jobs:
       
       - name: Upload synth artifact
         uses: actions/upload-artifact@v4
+        if: inputs.upload-artifacts
         with:
           name: aws-cdk-synth
           path: cdk.out

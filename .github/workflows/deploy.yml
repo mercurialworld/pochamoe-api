@@ -13,6 +13,8 @@ env:
 jobs:
   build:
     uses: ./.github/workflows/build.yml
+    with:
+      upload-artifacts: true
     secrets: inherit
 
   push-image:
@@ -24,7 +26,7 @@ jobs:
       packages: write
     environment:
       name: docker
-      url: https://${{ needs.build.outputs.tag }}
+      url: https://${{ needs.build.outputs.key }}
     outputs:
       digest: ${{ steps.digest.outputs.value }}
     steps:
@@ -52,7 +54,7 @@ jobs:
 
       - name: Get image digest
         id: digest
-        run: echo "value=$(docker inspect --format='{{index .RepoDigests 0}}' ${{ needs.build.outputs.tag }})" >> "$GITHUB_OUTPUT"
+        run: echo "value=$(docker inspect --format='{{index .RepoDigests 0}}' ${{ needs.build.outputs.key }})" >> "$GITHUB_OUTPUT"
 
   deploy-aws-cdk:
     needs:
