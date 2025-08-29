@@ -1,1 +1,5 @@
 # prod overrides
+services:
+  pocha-api:
+    restart: unless-stopped
+    image: "${IMAGE}"
