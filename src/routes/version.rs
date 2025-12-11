@@ -22,7 +22,7 @@ pub struct ModParams {
 // [TODO] do not hardcode this
 pub async fn handler(Path(params): Path<ModParams>) -> Result<&'static str, VersionError> {
     match params.validate() {
-        Ok(_) => Ok("0.6.6.0"),
+        Ok(_) => Ok("0.6.7.0"),
         Err(e) => Err(VersionError(e.into())),
     }
 }
