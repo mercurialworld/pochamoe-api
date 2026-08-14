@@ -5,7 +5,7 @@
   "dependencies": {
     "@types/bun": "^1.2.15",
     "@types/node": "^22.15.23",
-    "chaeri": "github:mercurialworld/chaeri"
+    "chaeri": "github:mercurialworld/chaeri#semver:^v0.2.8"
   },
   "devDependencies": {
     "aws-cdk": "^2.1016.1",
